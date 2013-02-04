@@ -52,15 +52,20 @@
             this.OverTimeTimer = new System.Windows.Forms.Timer(this.components);
             this.DownloadProgressBar = new System.Windows.Forms.ProgressBar();
             this.DownLoadLable = new System.Windows.Forms.Label();
+            this.keyIDBox = new System.Windows.Forms.TextBox();
+            this.keyIdInfo = new System.Windows.Forms.Label();
+            this.infoGroup = new System.Windows.Forms.GroupBox();
+            this.getKeyId = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.infoGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // FileButton
             // 
-            this.FileButton.Location = new System.Drawing.Point(12, 431);
+            this.FileButton.Location = new System.Drawing.Point(12, 512);
             this.FileButton.Name = "FileButton";
             this.FileButton.Size = new System.Drawing.Size(75, 23);
             this.FileButton.TabIndex = 7;
@@ -80,9 +85,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 55);
+            this.groupBox1.Location = new System.Drawing.Point(12, 84);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(377, 234);
+            this.groupBox1.Size = new System.Drawing.Size(202, 234);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "人员信息";
@@ -181,7 +186,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.PictureBox);
-            this.groupBox2.Location = new System.Drawing.Point(418, 12);
+            this.groupBox2.Location = new System.Drawing.Point(441, 62);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 256);
             this.groupBox2.TabIndex = 2;
@@ -201,9 +206,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.logInfo);
-            this.groupBox3.Location = new System.Drawing.Point(12, 295);
+            this.groupBox3.Location = new System.Drawing.Point(12, 359);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(609, 130);
+            this.groupBox3.Size = new System.Drawing.Size(629, 130);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "消息";
@@ -216,7 +221,7 @@
             this.logInfo.Name = "logInfo";
             this.logInfo.ReadOnly = true;
             this.logInfo.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.logInfo.Size = new System.Drawing.Size(580, 96);
+            this.logInfo.Size = new System.Drawing.Size(602, 96);
             this.logInfo.TabIndex = 0;
             // 
             // ComComboBox
@@ -238,7 +243,7 @@
             // 
             // DownloadButton
             // 
-            this.DownloadButton.Location = new System.Drawing.Point(546, 431);
+            this.DownloadButton.Location = new System.Drawing.Point(531, 512);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(75, 23);
             this.DownloadButton.TabIndex = 8;
@@ -252,7 +257,7 @@
             // 
             // DownloadProgressBar
             // 
-            this.DownloadProgressBar.Location = new System.Drawing.Point(93, 431);
+            this.DownloadProgressBar.Location = new System.Drawing.Point(93, 512);
             this.DownloadProgressBar.Name = "DownloadProgressBar";
             this.DownloadProgressBar.Size = new System.Drawing.Size(423, 23);
             this.DownloadProgressBar.TabIndex = 6;
@@ -265,12 +270,52 @@
             this.DownLoadLable.Size = new System.Drawing.Size(0, 12);
             this.DownLoadLable.TabIndex = 6;
             // 
+            // keyIDBox
+            // 
+            this.keyIDBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.keyIDBox.Location = new System.Drawing.Point(68, 200);
+            this.keyIDBox.Name = "keyIDBox";
+            this.keyIDBox.ReadOnly = true;
+            this.keyIDBox.Size = new System.Drawing.Size(123, 21);
+            this.keyIDBox.TabIndex = 9;
+            // 
+            // keyIdInfo
+            // 
+            this.keyIdInfo.AutoSize = true;
+            this.keyIdInfo.Location = new System.Drawing.Point(5, 203);
+            this.keyIdInfo.Name = "keyIdInfo";
+            this.keyIdInfo.Size = new System.Drawing.Size(59, 12);
+            this.keyIdInfo.TabIndex = 10;
+            this.keyIdInfo.Text = "KeyID读取";
+            // 
+            // infoGroup
+            // 
+            this.infoGroup.Controls.Add(this.keyIDBox);
+            this.infoGroup.Controls.Add(this.keyIdInfo);
+            this.infoGroup.Location = new System.Drawing.Point(220, 84);
+            this.infoGroup.Name = "infoGroup";
+            this.infoGroup.Size = new System.Drawing.Size(204, 234);
+            this.infoGroup.TabIndex = 11;
+            this.infoGroup.TabStop = false;
+            this.infoGroup.Text = "状态信息";
+            // 
+            // getKeyId
+            // 
+            this.getKeyId.Location = new System.Drawing.Point(336, 320);
+            this.getKeyId.Name = "getKeyId";
+            this.getKeyId.Size = new System.Drawing.Size(72, 23);
+            this.getKeyId.TabIndex = 11;
+            this.getKeyId.Text = "读iButton";
+            this.getKeyId.UseVisualStyleBackColor = true;
+            // 
             // Download
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(630, 485);
+            this.ClientSize = new System.Drawing.Size(665, 547);
+            this.Controls.Add(this.getKeyId);
+            this.Controls.Add(this.infoGroup);
             this.Controls.Add(this.DownLoadLable);
             this.Controls.Add(this.DownloadProgressBar);
             this.Controls.Add(this.DownloadButton);
@@ -290,6 +335,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.infoGroup.ResumeLayout(false);
+            this.infoGroup.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,6 +367,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox WorkTextBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox infoGroup;
+        private System.Windows.Forms.TextBox keyIDBox;
+        private System.Windows.Forms.Label keyIdInfo;
+        private System.Windows.Forms.Button getKeyId;
     }
 }
 
