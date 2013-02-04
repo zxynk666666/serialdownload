@@ -1,0 +1,18 @@
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\bin\Debug\SerialDownload.exe
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\bin\Debug\SerialDownload.pdb
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.Download.resources
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.Properties.Resources.resources
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.exe
+C:\Users\xyZhang\documents\visual studio 2010\Projects\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.pdb
+F:\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.exe
+F:\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.pdb
+F:\SerialDownload\SerialDownload\bin\Debug\SerialDownload.exe
+F:\SerialDownload\SerialDownload\bin\Debug\SerialDownload.pdb
+F:\SerialDownload\SerialDownload\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.Download.resources
+F:\SerialDownload\SerialDownload\obj\x86\Debug\SerialDownload.Properties.Resources.resources
+F:\SerialDownload\SerialDownload\obj\x86\Debug\GenerateResource.read.1.tlog
+F:\SerialDownload\SerialDownload\obj\x86\Debug\GenerateResource.write.1.tlog
