@@ -43,8 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PictureBox = new System.Windows.Forms.PictureBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.logInfo = new System.Windows.Forms.TextBox();
             this.ComComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DownloadButton = new System.Windows.Forms.Button();
@@ -56,11 +54,13 @@
             this.keyIdInfo = new System.Windows.Forms.Label();
             this.infoGroup = new System.Windows.Forms.GroupBox();
             this.getKeyId = new System.Windows.Forms.Button();
+            this.logInfo = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.infoGroup.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // FileButton
@@ -136,7 +136,6 @@
             this.KeyIDTextBox.Name = "KeyIDTextBox";
             this.KeyIDTextBox.Size = new System.Drawing.Size(102, 21);
             this.KeyIDTextBox.TabIndex = 6;
-            this.KeyIDTextBox.Text = "015C10BC000D0A66";
             // 
             // DepTextBox
             // 
@@ -203,27 +202,6 @@
             this.PictureBox.TabIndex = 0;
             this.PictureBox.TabStop = false;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.logInfo);
-            this.groupBox3.Location = new System.Drawing.Point(12, 359);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(629, 130);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "消息";
-            // 
-            // logInfo
-            // 
-            this.logInfo.AllowDrop = true;
-            this.logInfo.Location = new System.Drawing.Point(14, 20);
-            this.logInfo.Multiline = true;
-            this.logInfo.Name = "logInfo";
-            this.logInfo.ReadOnly = true;
-            this.logInfo.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.logInfo.Size = new System.Drawing.Size(602, 96);
-            this.logInfo.TabIndex = 0;
-            // 
             // ComComboBox
             // 
             this.ComComboBox.FormattingEnabled = true;
@@ -243,7 +221,7 @@
             // 
             // DownloadButton
             // 
-            this.DownloadButton.Location = new System.Drawing.Point(531, 512);
+            this.DownloadButton.Location = new System.Drawing.Point(561, 512);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(75, 23);
             this.DownloadButton.TabIndex = 8;
@@ -265,7 +243,7 @@
             // DownLoadLable
             // 
             this.DownLoadLable.AutoSize = true;
-            this.DownLoadLable.Location = new System.Drawing.Point(526, 437);
+            this.DownLoadLable.Location = new System.Drawing.Point(528, 518);
             this.DownLoadLable.Name = "DownLoadLable";
             this.DownLoadLable.Size = new System.Drawing.Size(0, 12);
             this.DownLoadLable.TabIndex = 6;
@@ -307,6 +285,28 @@
             this.getKeyId.TabIndex = 11;
             this.getKeyId.Text = "读iButton";
             this.getKeyId.UseVisualStyleBackColor = true;
+            this.getKeyId.Click += new System.EventHandler(this.getKeyId_Click);
+            // 
+            // logInfo
+            // 
+            this.logInfo.AllowDrop = true;
+            this.logInfo.Location = new System.Drawing.Point(14, 20);
+            this.logInfo.Multiline = true;
+            this.logInfo.Name = "logInfo";
+            this.logInfo.ReadOnly = true;
+            this.logInfo.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.logInfo.Size = new System.Drawing.Size(602, 96);
+            this.logInfo.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.logInfo);
+            this.groupBox3.Location = new System.Drawing.Point(12, 359);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(629, 130);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "消息";
             // 
             // Download
             // 
@@ -333,10 +333,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.infoGroup.ResumeLayout(false);
             this.infoGroup.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,10 +353,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox ComComboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox logInfo;
         private System.Windows.Forms.Button DownloadButton;
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Timer OverTimeTimer;
@@ -371,6 +369,8 @@
         private System.Windows.Forms.TextBox keyIDBox;
         private System.Windows.Forms.Label keyIdInfo;
         private System.Windows.Forms.Button getKeyId;
+        private System.Windows.Forms.TextBox logInfo;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

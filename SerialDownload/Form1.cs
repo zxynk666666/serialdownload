@@ -20,8 +20,8 @@ namespace SerialDownload
         public byte[] infoPkg;
         public int count = 0;
         public SerialPort ComPort = new SerialPort();
-        public byte[] ACK = { 0x7e, 0, 0, 0, 0 };
-        public byte[] NAK = { 0x7e, 0, 0, 0, 0 };
+        public byte[] ACK = {0x7e, 0, 0, 0, 0};
+        public byte[] NAK = {0x7e, 0, 0, 0, 0};
         public byte[] pkgData = new byte[2055];
 
         public Download()
@@ -39,10 +39,10 @@ namespace SerialDownload
 
         private short RGB888to565(int R, int G, int B)
         {
-            return (short)((((R & 0x0ff) / 8) << 11) | (((G & 0x0ff) / 8) << 6) | ((B & 0x0ff) / 8));
+            return (short) ((((R & 0x0ff)/8) << 11) | (((G & 0x0ff)/8) << 6) | ((B & 0x0ff)/8));
         }
 
-       
+
 
         //private short RGB888to565(int R, int G, int B)
         //{
@@ -69,36 +69,37 @@ namespace SerialDownload
                 {
                     myStream.Close();
 
-                    filePath = openFileDialog1.FileName.ToString();                    
+                    filePath = openFileDialog1.FileName.ToString();
 
                     Image image = Image.FromFile(filePath);
-                    
+
                     //PictureBox.Image = image;
                     //PictureBox.Show();
 
                     //自动调整BMP图片大小为217,252
                     Bitmap bitMap = new Bitmap(image, 128, 171);
-                    
+
                     //显示图片  
-                    PictureBox.Image = (Image)bitMap;
+                    PictureBox.Image = (Image) bitMap;
                     PictureBox.Show();
-                    
+
                     //转换为16位的图片，貌似没啥用
                     bitMap = to16pic(bitMap);
 
                     //转换ARGB为RGB565型数据
                     //bitMap.RotateFlip(RotateFlipType.Rotate90FlipX);  //图片旋转90°
-                    picData = new byte[bitMap.Width * bitMap.Height * 2];
+                    picData = new byte[bitMap.Width*bitMap.Height*2];
 
                     Color imageColor;
                     for (int i = 0; i < bitMap.Height; i++)
                     {
-                            for (int j = 0; j < bitMap.Width; j++)
-                            {
-                                imageColor = bitMap.GetPixel(j, i);
-                                picData[count++] = (byte)((RGB888to565(imageColor.R, imageColor.G, imageColor.B) >> 8) & 0x00ff);
-                                picData[count++] = (byte)(RGB888to565(imageColor.R, imageColor.G, imageColor.B) & 0x00ff);
-                            }
+                        for (int j = 0; j < bitMap.Width; j++)
+                        {
+                            imageColor = bitMap.GetPixel(j, i);
+                            picData[count++] =
+                                (byte) ((RGB888to565(imageColor.R, imageColor.G, imageColor.B) >> 8) & 0x00ff);
+                            picData[count++] = (byte) (RGB888to565(imageColor.R, imageColor.G, imageColor.B) & 0x00ff);
+                        }
                     }
 
                 }
@@ -130,7 +131,7 @@ namespace SerialDownload
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            
+
             DownloadProgressBar.Maximum = 100;
             DownloadProgressBar.Value = 0;
             DownloadButton.Enabled = false;
@@ -156,12 +157,12 @@ namespace SerialDownload
                             transportDep();
                             transportProfession();
                             transportJobNum();
-                            transportKeyID();                            
+                            transportKeyID();
                             MessageBox.Show("完成下载");
                             DownloadProgressBar.Value = 0;
                         }
                         else
-                        {  
+                        {
                             MessageBox.Show("请选择图片");
                         }
                     }
@@ -192,17 +193,17 @@ namespace SerialDownload
             List<byte[]> listMsg = new List<byte[]>();
 
             bitmap[0] = 0xcc;
-            bitmap[1] = (byte)message.Length;
+            bitmap[1] = (byte) message.Length;
 
             for (int index = 0; index < message.Length; index++)
             {
                 //FileStream fsAsc16 = new FileStream("Asc8X16E.dat", FileMode.Open);    //将"ASC16"字库文件读入文件流
                 //FileStream fsHzk16 = new FileStream("宋体16.dot", FileMode.Open);    //将"HZK16"字库文件读入文件流
-                FileStream fsAsc16 = new FileStream("Asc8X16E.dat", FileMode.Open);    //将"ASC16"字库文件读入文件流
-                FileStream fsHzk24 = new FileStream("宋体24.dot", FileMode.Open);    //将"HZK16"字库文件读入文件流
+                FileStream fsAsc16 = new FileStream("Asc8X16E.dat", FileMode.Open); //将"ASC16"字库文件读入文件流
+                FileStream fsHzk24 = new FileStream("宋体24.dot", FileMode.Open); //将"HZK16"字库文件读入文件流
 
                 string s = message.Substring(index, 1);
-                if (Convert.ToChar(s) < 256)    //判断是否为中文，小于256为字符
+                if (Convert.ToChar(s) < 256) //判断是否为中文，小于256为字符
                 {
                     //byte[] bMsg = new byte[16];
                     //int offset = 16 * (byte)(s[0]);
@@ -210,7 +211,7 @@ namespace SerialDownload
                     //fsAsc16.Read(bMsg, 0, 16);
                     //listMsg.Add(bMsg);
                     byte[] bMsg = new byte[2];
-                    bMsg[0] = (byte)s[0];
+                    bMsg[0] = (byte) s[0];
                     bMsg[1] = 0x00;
                     listMsg.Add(bMsg);
                     bitmap[index + 2] = 0xdd;
@@ -219,7 +220,7 @@ namespace SerialDownload
                 {
                     byte[] bMsg = new byte[72];
                     byte[] bytes = Encoding.GetEncoding("GB2312").GetBytes(s.ToCharArray());
-                    int offset = 72 * (94 * (bytes[0] - 0xA1) + bytes[1] - 0xA1);
+                    int offset = 72*(94*(bytes[0] - 0xA1) + bytes[1] - 0xA1);
                     fsHzk24.Seek(offset, SeekOrigin.Begin);
                     fsHzk24.Read(bMsg, 0, 72);
 
@@ -227,7 +228,7 @@ namespace SerialDownload
                     byte[] bMsgL = new byte[36];
                     int l = 0;
                     int h = 0;
-                    for (int j = 0; j < 36 * 2; j++)
+                    for (int j = 0; j < 36*2; j++)
                     {
                         if (j < 36)
                             bMsgH[h++] = bMsg[j];
@@ -246,12 +247,12 @@ namespace SerialDownload
             }
 
             //为字节数组排序
-            byte[] bMessages = new byte[listMsg.Count * 36];
+            byte[] bMessages = new byte[listMsg.Count*36];
             for (int i = 0; i < listMsg.Count; i++)
             {
                 for (int j = 0; j < listMsg[i].Length; j++)
                 {
-                    bMessages[i * 36 + j] = listMsg[i][j];
+                    bMessages[i*36 + j] = listMsg[i][j];
                 }
             }
 
@@ -307,7 +308,7 @@ namespace SerialDownload
                 //sequence
                 pkgData[2] = seq++;
 
-                if ((pkg2Send.Length - count) / 2048 > 0)
+                if ((pkg2Send.Length - count)/2048 > 0)
                 {
                     //length
                     pkgData[3] = 8;
@@ -322,13 +323,13 @@ namespace SerialDownload
                     }
                     //checksum
                     pkgData[6 + i] = checksum;
-                    
+
                 }
                 else
                 {
                     //length
-                    pkgData[3] = (byte)(((pkg2Send.Length - count) % 2048) / 256);
-                    pkgData[4] = (byte)(((pkg2Send.Length - count) % 2048) % 256 + 1);
+                    pkgData[3] = (byte) (((pkg2Send.Length - count)%2048)/256);
+                    pkgData[4] = (byte) (((pkg2Send.Length - count)%2048)%256 + 1);
                     pkgData[5] = pkgType;
                     checksum += pkgData[5];
                     //data
@@ -340,9 +341,9 @@ namespace SerialDownload
                     }
                     //checksum
                     pkgData[6 + i] = checksum;
-                    
+
                 }
-                
+
                 length = 7 + i;
                 for (i = 0; i < length; i++)
                 {
@@ -356,13 +357,14 @@ namespace SerialDownload
                     seq = lastSeq;
                     retransmissionCount--;
                     logInfo.AppendText(".");
-                }else
+                }
+                else
                 {
                     logInfo.AppendText(".");
                     //logInfo.AppendText("\n");
                     //logInfo.AppendText(count.ToString());
-                    DownloadProgressBar.Value = count * 100 / pkg2Send.Length;
-                    DownLoadLable.Text = (count * 100 / pkg2Send.Length).ToString();
+                    DownloadProgressBar.Value = count*100/pkg2Send.Length;
+                    DownLoadLable.Text = (count*100/pkg2Send.Length).ToString();
                 }
 
             }
@@ -372,13 +374,13 @@ namespace SerialDownload
         {
             logInfo.AppendText("正在擦除FLASH");
             cleanFlash(1);
-                      
+
             logInfo.AppendText("\n\n");
             logInfo.AppendText("擦除完成！\n");
             logInfo.AppendText("\n\n");
             logInfo.AppendText("下载图片信息");
             sendPkg(1, picData);
-            
+
             finish(1);
         }
 
@@ -395,7 +397,7 @@ namespace SerialDownload
 
             sendPkg(2, nameData);
             finish(2);
-            
+
         }
 
         private void transportDep()
@@ -416,11 +418,11 @@ namespace SerialDownload
         private static byte[] strToToHexByte(string hexString)
         {
             hexString = hexString.Replace(" ", "");
-            if ((hexString.Length % 2) != 0)
+            if ((hexString.Length%2) != 0)
                 hexString += " ";
-            byte[] returnBytes = new byte[hexString.Length / 2];
+            byte[] returnBytes = new byte[hexString.Length/2];
             for (int i = 0; i < returnBytes.Length; i++)
-                returnBytes[i] = Convert.ToByte(hexString.Substring(i * 2, 2), 16);
+                returnBytes[i] = Convert.ToByte(hexString.Substring(i*2, 2), 16);
             return returnBytes;
         }
 
@@ -456,7 +458,7 @@ namespace SerialDownload
             string message = KeyIDTextBox.Text;
 
             keyID_Data = strToToHexByte(message);
- 
+
             sendPkg(6, keyID_Data);
             finish(6);
         }
@@ -529,5 +531,115 @@ namespace SerialDownload
             }
         }
 
+        private byte[] checkRecvPkgAndgetKeyID(byte seq)
+        {
+            byte[] comData = new byte[13];
+            ComPort.Read(comData, 0, 13);
+
+            if (comData[0] != 0x7e)
+            {
+                comData[0] = 0x00;
+            }
+            if (comData[1] != 0x03)
+            {
+                comData[0] = 0x00;
+                ;
+            }
+            if (comData[2] != seq - 1)
+            {
+                comData[0] = 0x00;
+                ;
+            }
+            byte[] result = new byte[8];
+
+            result[0] = comData[5];
+            result[1] = comData[6];
+            result[2] = comData[7];
+            result[3] = comData[8];
+            result[4] = comData[9];
+            result[5] = comData[10];
+            result[6] = comData[11];
+            result[7] = comData[12];
+            return result;            
+        }
+
+        private void getIButtonKey()
+        {
+            int length = 0;
+            byte checksum = 0;
+            byte i = 3, j = 0;
+            byte[] recv = new byte[13];
+            while (i-- > 0)
+            {
+                pkgData[0] = 0x7e;
+                pkgData[1] = 0x06;
+                //seq
+                pkgData[2] = 0x00;
+                //length
+                pkgData[3] = 0x00;
+                pkgData[4] = 0x01;
+                //data
+                pkgData[5] = 0;
+                //checksum
+                pkgData[6] = checksum;
+
+                length = 7;
+
+                for (j = 0; j < length; j++)
+                {
+                    ComPort.Write(pkgData, j, 1);
+                }
+                Thread.Sleep(1200);
+                recv = checkRecvPkgAndgetKeyID(1);
+                if (recv[0] == 0x00)
+                {
+                    i = 0;
+                }
+            }
+            string t = BitConverter.ToString(recv).Replace("-","");
+            keyIDBox.Text = t;
+
+        }
+
+        private void getKeyId_Click(object sender, EventArgs e)
+        {
+            getKeyId.Enabled = false;
+            DownloadButton.Enabled = false;
+            FileButton.Enabled = false;
+
+            this.ComPort.BaudRate = 115200;
+
+            try
+            {
+                if (this.ComComboBox.SelectedItem != null)
+                {
+                    this.ComPort.PortName = this.ComComboBox.SelectedItem.ToString();
+                    //ComPort.WriteTimeout = 10;
+                    //ComPort.ReadTimeout = 10;
+                    if (this.ComPort.IsOpen.Equals(false).Equals(true))
+                    {
+                        this.ComPort.Open();
+                        getIButtonKey();
+                    }
+                    else
+                    {
+                        MessageBox.Show("端口被占用");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请选择串口");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("获取计算机COM口" + this.ComComboBox.SelectedItem.ToString() + "失败!\r\n错误信息:" + ex.Message);
+            }
+            this.ComPort.Close();
+            getKeyId.Enabled = true;
+            DownloadButton.Enabled = true;
+            FileButton.Enabled = true;
+
+        }
     }
 }
